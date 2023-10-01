@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "root:${ROOT_PWD}" | chpasswd
+echo "root:${ROOT_PWD}" | chpasswd -e
 export ROOT_PWD="secret"
 
 if [ "${ENABLE_SSH}" == "true" ]; then
