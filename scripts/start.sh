@@ -6,15 +6,15 @@ if [ "${ENABLE_SSH}" == "true" ]; then
   fi
   if [ ! -f ${DATA_DIR}/.ssh/ssh_host_rsa_key ]; then
     echo "---No ssh_host_rsa_key found, generating!---"
-    ssh-keygen -f ${DATA_DIR}/.ssh/ssh_host_rsa_key -t rsa -b 4096 -N ""
+    ssh-keygen -f ${DATA_DIR}/.ssh/ssh_host_rsa_key -t rsa -b 4096 -N "" >/dev/null 2>&1
   fi
   if [ ! -f ${DATA_DIR}/.ssh/ssh_host_ecdsa_key ]; then
     echo "---No ssh_host_ecdsa_key found, generating!---"
-    ssh-keygen -f ${DATA_DIR}/.ssh/ssh_host_ecdsa_key -t ecdsa -b 521 -N ""
+    ssh-keygen -f ${DATA_DIR}/.ssh/ssh_host_ecdsa_key -t ecdsa -b 521 -N "" >/dev/null 2>&1
   fi
   if [ ! -f ${DATA_DIR}/.ssh/ssh_host_ed25519_key ]; then
     echo "---No ssh_host_ed25519_key found, generating!---"
-    ssh-keygen -f ${DATA_DIR}/.ssh/ssh_host_ed25519_key -t ed25519 -N ""
+    ssh-keygen -f ${DATA_DIR}/.ssh/ssh_host_ed25519_key -t ed25519 -N "" >/dev/null 2>&1
   fi
   /etc/rc.d/rc.sshd start >/dev/null 2>&1
   SSH_MESSAGE="or connect through SSH "
