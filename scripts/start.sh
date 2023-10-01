@@ -50,7 +50,12 @@ if [ "$DL_ON_START" == "true" ]; then
         echo "Folder still exists, please remove ${DATA_DIR}/linux-${UNAME}"
         sleep 5
       done
-      echo "Folder removed, continuing..."
+      if [ ! -f ${DATA_DIR}/linux-${UNAME}.tar.xz ]; then
+        echo "Something went wrong, file ${DATA_DIR}/linux-${UNAME}.tar.xz isn't in place any more. Please restart the container."
+        sleep infinity
+      else
+        echo "Folder removed, continuing..."
+      fi
     fi
     mkdir -p ${DATA_DIR}/linux-${UNAME}
     tar -xf ${DATA_DIR}/linux-$UNAME.tar.xz -C ${DATA_DIR}/linux-$UNAME
