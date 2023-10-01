@@ -23,12 +23,32 @@ COPY installscript.sh /tmp/
 RUN chmod +x /tmp/installscript.sh && \
         /tmp/installscript.sh
 
+RUN mkdir -p /run/sshd && \
+        sed -i "/#Port 22/c\Port 8022" /etc/ssh/sshd_config && \
+        sed -i "/#ListenAddress 0.0.0.0/c\ListenAddress 0.0.0.0" /etc/ssh/sshd_config && \
+        sed -i "/#HostKey \/etc\/ssh\/ssh_host_rsa_key/c\HostKey \/usr\/src\/.ssh\/ssh_host_rsa_key" /etc/ssh/sshd_config && \
+        sed -i "/#HostKey \/etc\/ssh\/ssh_host_ecdsa_key/c\HostKey \/usr\/src\/.ssh\/ssh_host_ecdsa_key" /etc/ssh/sshd_config && \
+        sed -i "/#HostKey \/etc\/ssh\/ssh_host_ed25519_key/c\HostKey \/usr\/src\/.ssh\/ssh_host_ed25519_key" /etc/ssh/sshd_config && \
+        sed -i "/#PermitRootLogin prohibit-password/c\PermitRootLogin yes" /etc/ssh/sshd_config
+
+RUN cd /tmp && \
+	wget -O /tmp/github-release.bz2 https://github.com/github-release/github-release/releases/download/v0.10.0/linux-amd64-github-release.bz2 && \
+ 	bzip2 -d github-release.bz2 && \
+  	cp /tmp/github-release /usr/bin/github-release && \
+   	chmod 755 /usr/bin/github-release && \
+    	rm -rf /tmp/* /tmp/.*
+
 ENV DATA_DIR="/usr/src"
+ENV DL_ON_START="true"
+ENV EXTRACT="true"
+ENV ENABLE_SSH="true"
 ENV UMASK=000
 ENV UID=99
 ENV GID=100
 ENV DATA_PERM=770
 ENV USER="build"
+
+WORKDIR /usr/src
 
 RUN mkdir -p $DATA_DIR && \
 	useradd -d $DATA_DIR -s /bin/bash $USER && \
