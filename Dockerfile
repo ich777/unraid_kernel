@@ -1,6 +1,7 @@
 FROM vbatts/slackware:15.0
 
 LABEL maintainer="admin@minenet.at"
+LABEL org.opencontainers.image.source="https://github.com/ich777/unraid_kernel"
 
 ARG CA_CERT_V=20211216
 ARG OPENSSL_V=1.1.1m
