@@ -32,12 +32,12 @@ if [ "$DL_ON_START" == "true" ]; then
   if [ ! -f ${DATA_DIR}/linux-${UNAME}.tar.xz ]; then
     echo "linux-${UNAME}.tar.xz not found, please wait downloading..."
     if wget -q --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/linux-${UNAME}.tar.xz "https://github.com/ich777/unraid_kernel/releases/download/${UNAME}/linux-${UNAME}.tar.xz" ; then
-    echo "Download successful, please wait..."
-  else
-    rm -rf ${DATA_DIR}/linux-${UNAME}.tar.xz
-    echo "Download failed, putting container into sleep mode."
-    sleep infinity
-  fi
+      echo "Download successful, please wait..."
+    else
+      rm -rf ${DATA_DIR}/linux-${UNAME}.tar.xz
+      echo "Download failed, putting container into sleep mode."
+      sleep infinity
+    fi
   else
     echo "linux-${UNAME}.tar.xz found!"
   fi
@@ -51,25 +51,21 @@ if [ "$DL_ON_START" == "true" ]; then
         sleep 5
       done
       echo "Folder removed, continuing..."
-	fi
-  else
+    fi
     mkdir -p ${DATA_DIR}/linux-${UNAME}
     tar -xf ${DATA_DIR}/linux-$UNAME.tar.xz -C ${DATA_DIR}/linux-$UNAME
-  fi
-
-  GCC_V=$(gcc -v 2>&1 | grep -oP "(?<=gcc version )[^ ]+")
-  PRECOMP_GCC_V=$(grep "CONFIG_CC_VERSION_TEXT" ${DATA_DIR}/linux-${UNAME}/.config | grep -oP '\d+\.\d+(\.\d+)?')
-  if [ "${PRECOMP_GCC_V}" != "${GCC_V}" ]; then
-    echo "WARNING: gcc version from precompiled Kernel version v${PRECOMP_GCC_V} does not match the gcc version from the container v${GCC_V}."
-  fi
-
-  cd ${DATA_DIR}/linux-${UNAME}
-  echo "Preparing container, Stage 1 of 2, please wait..."
-  make -j${CPU_THREADS} >/dev/null 2>&1
-  echo "Stage 1 done, Stage 2 started, please wait..." 
-  make modules_install -j${CPU_THREADS} >/dev/null 2>&1
-  echo "Stage 2 done"
-  echo "The pre-compiled Kernel is located in ${DATA_DIR}/linux-${UNAME}"
+    GCC_V=$(gcc -v 2>&1 | grep -oP "(?<=gcc version )[^ ]+")
+    PRECOMP_GCC_V=$(grep "CONFIG_CC_VERSION_TEXT" ${DATA_DIR}/linux-${UNAME}/.config | grep -oP '\d+\.\d+(\.\d+)?')
+    if [ "${PRECOMP_GCC_V}" != "${GCC_V}" ]; then
+      echo "WARNING: gcc version from precompiled Kernel version v${PRECOMP_GCC_V} does not match the gcc version from the container v${GCC_V}."
+    fi
+    cd ${DATA_DIR}/linux-${UNAME}
+    echo "Preparing container, Stage 1 of 2, please wait..."
+    make -j${CPU_THREADS} >/dev/null 2>&1
+    echo "Stage 1 done, Stage 2 started, please wait..." 
+    make modules_install -j${CPU_THREADS} >/dev/null 2>&1
+    echo "Stage 2 done"
+    echo "The pre-compiled Kernel is located in ${DATA_DIR}/linux-${UNAME}"
   fi
 fi
 
