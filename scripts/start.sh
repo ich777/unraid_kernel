@@ -71,4 +71,16 @@ fi
 
 echo "Container ready, please open the console ${SSH_MESSAGE}to the container and go to ${DATA_DIR}"
 
-sleep infinity
+term_handler() {
+  kill -SIGTERM $(pidof sleep)
+  exit 143;
+}
+
+trap 'kill ${!}; term_handler' SIGTERM
+sleep infinity &
+killpid="$!"
+while true
+do
+  wait $killpid
+  exit 0;
+done
