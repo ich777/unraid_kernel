@@ -1,4 +1,7 @@
 #!/bin/bash
+echo "root:${ROOT_PWD}" | chpasswd
+export ROOT_PWD="secret"
+
 if [ "${ENABLE_SSH}" == "true" ]; then
   echo "Enabling SSH server, please wait..."
   if [ ! -d ${DATA_DIR}/.ssh ]; then
