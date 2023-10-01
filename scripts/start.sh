@@ -31,7 +31,7 @@ if [ "$DL_ON_START" == "true" ]; then
   if [ ! -f ${DATA_DIR}/linux-${UNAME}.tar.xz ]; then
     echo "linux-${UNAME}.tar.xz not found, please wait downloading..."
     if wget -q --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/linux-${UNAME}.tar.xz "https://github.com/ich777/unraid_kernel/releases/download/${UNAME}/linux-${UNAME}.tar.xz" ; then
-    echo "Download successful"
+    echo "Download successful, please wait..."
   else
     rm -rf ${DATA_DIR}/linux-${UNAME}.tar.xz
     echo "Download failed, putting container into sleep mode."
