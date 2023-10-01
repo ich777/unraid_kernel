@@ -36,7 +36,6 @@ RUN mkdir -p $DATA_DIR && \
 	ulimit -n 2048
 
 ADD /scripts/ /opt/scripts/
-ADD /deps/ /tmp/deps/
 RUN chmod -R 770 /opt/scripts/
 
 #Server Start
