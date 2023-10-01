@@ -59,7 +59,7 @@ if [ "$DL_ON_START" == "true" ]; then
   GCC_V=$(gcc -v 2>&1 | grep -oP "(?<=gcc version )[^ ]+")
   PRECOMP_GCC_V=$(grep "CONFIG_CC_VERSION_TEXT" ${DATA_DIR}/linux-${UNAME}/.config | grep -oP '\d+\.\d+(\.\d+)?')
   if [ "${PRECOMP_GCC_V}" != "${GCC_V}" ]; then
-    echo "WARNING: gcc version from precompiled Kernel version (v${PRECOMP_GCC_V}) does not match the gcc version from the container (v${GCC_V})."
+    echo "WARNING: gcc version from precompiled Kernel version v${PRECOMP_GCC_V} does not match the gcc version from the container v${GCC_V}."
   fi
 
   cd ${DATA_DIR}/linux-${UNAME}
