@@ -39,9 +39,11 @@ RUN cd /tmp && \
     	rm -rf /tmp/* /tmp/.*
 
 ENV DATA_DIR="/usr/src"
+ENV ENABLE_SSH="true"
 ENV DL_ON_START="true"
 ENV EXTRACT="true"
-ENV ENABLE_SSH="true"
+ENV CPU_THREADS="all"
+ENV CLEANUP="false"
 ENV UMASK=000
 ENV UID=99
 ENV GID=100
