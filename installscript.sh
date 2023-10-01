@@ -54,6 +54,7 @@ packages=(
   lzo
   lz4
   xxHash
+  openssh
 )
 
 # download FILELIST.TXT to get list of packages
