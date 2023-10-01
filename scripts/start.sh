@@ -1,5 +1,6 @@
 #!/bin/bash
 if [ "${ENABLE_SSH}" == "true" ]; then
+  echo "Enabling SSH server, please wait..."
   if [ ! -d ${DATA_DIR}/.ssh ]; then
     mkdir -p ${DATA_DIR}/.ssh
   fi
