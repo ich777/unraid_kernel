@@ -55,6 +55,7 @@ packages=(
   lz4
   xxHash
   openssh
+  bzip2
 )
 
 # download FILELIST.TXT to get list of packages
