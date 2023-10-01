@@ -36,7 +36,7 @@ RUN cd /tmp && \
  	bzip2 -d github-release.bz2 && \
   	cp /tmp/github-release /usr/bin/github-release && \
    	chmod 755 /usr/bin/github-release && \
-    	rm -rf /tmp/* /tmp/.*
+    	rm -rf /tmp/*
 
 ENV DATA_DIR="/usr/src"
 ENV ENABLE_SSH="true"
