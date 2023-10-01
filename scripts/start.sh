@@ -75,7 +75,8 @@ fi
 echo "Container ready, please open the console ${SSH_MESSAGE}to the container and go to ${DATA_DIR}"
 
 term_handler() {
-  kill -SIGTERM $(pidof sleep)
+  kill -SIGTERM "$killpid"
+  wait "$killpid" -f 2>/dev/null
   exit 143;
 }
 
