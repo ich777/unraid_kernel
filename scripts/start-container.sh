@@ -2,7 +2,8 @@
 # Execute cleanup and sleep container afterwards
 if [ "${CLEANUP}" == "true" ]; then
   echo "Cleaning up, please wait..."
-  find . -maxdepth 1 -type d -not -name '.ssh' -print0 | xargs -0 -I {} rm -R {} 2&>/dev/null
+  cd ${DATA_DIR}
+  find . -maxdepth 1 -type d -print0 | xargs -0 -I {} rm -R {} 2&>/dev/null
   echo "Cleanup done, please disable CLEANUP and restart the container."
   sleep infinity
 fi
