@@ -1,16 +1,18 @@
 #!/bin/bash
+# Get current uname
+UNAME=$(uname -r)
+
 # Execute cleanup and sleep container afterwards
 if [ "${CLEANUP}" == "true" ]; then
   echo "Cleaning up, please wait..."
   cd ${DATA_DIR}
-  find . -maxdepth 1 -type d -print0 | xargs -0 -I {} rm -R {} 2&>/dev/null
+  find . -maxdepth 1 -type d -not -name "${UNAME}" -print0 | xargs -0 -I {} rm -R {} 2&>/dev/null
   echo "Cleanup done, please disable CLEANUP and restart the container."
   sleep infinity
 fi
 
 # Download pre compiled Kernel for current Kernel version
 if [ "$DL_ON_START" == "true" ]; then
-  UNAME=$(uname -r)
   KERNELS_AVAIL=$(wget -qO- https://api.github.com/repos/ich777/unraid_kernel/releases | jq -r '.[].tag_name')
 
   # Set CPU threads to use
