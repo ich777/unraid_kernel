@@ -59,7 +59,7 @@ if [ "$DL_ON_START" == "true" ]; then
     fi
     echo "Extracting, please wait..."
     mkdir -p ${DATA_DIR}/linux-${UNAME}
-    tar -xuf ${DATA_DIR}/linux-$UNAME.tar.xz -C ${DATA_DIR}/linux-$UNAME
+    tar -xf ${DATA_DIR}/linux-$UNAME.tar.xz -C ${DATA_DIR}/linux-$UNAME
     # Check if gcc version matches, if not display warning
     GCC_V=$(gcc -v 2>&1 | grep -oP "(?<=gcc version )[^ ]+")
     PRECOMP_GCC_V=$(grep "CONFIG_CC_VERSION_TEXT" ${DATA_DIR}/linux-${UNAME}/.config | grep -oP '\d+\.\d+(\.\d+)?')
