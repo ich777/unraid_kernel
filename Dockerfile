@@ -40,23 +40,18 @@ RUN cd /tmp && \
 
 ENV DATA_DIR="/usr/src"
 ENV ENABLE_SSH="true"
+ENV ROOT_PWD="secret"
 ENV DL_ON_START="true"
 ENV EXTRACT="true"
+ENV OVERWRITE="false"
 ENV CPU_THREADS="all"
 ENV CLEANUP="false"
-ENV ROOT_PWD="secret"
 ENV UMASK=000
 ENV UID=99
 ENV GID=100
 ENV DATA_PERM=770
-ENV USER="build"
 
 WORKDIR /usr/src
-
-RUN mkdir -p $DATA_DIR && \
-	useradd -d $DATA_DIR -s /bin/bash $USER && \
-	chown -R $USER $DATA_DIR && \
-	ulimit -n 2048
 
 ADD /scripts/ /opt/scripts/
 RUN chmod -R 770 /opt/scripts/
