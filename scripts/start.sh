@@ -22,7 +22,7 @@ if [ "${ENABLE_SSH}" == "true" ]; then
     ssh-keygen -f ${DATA_DIR}/.ssh/ssh_host_ed25519_key -t ed25519 -N "" >/dev/null 2>&1
   fi
   /etc/rc.d/rc.sshd start >/dev/null 2>&1
-  SSH_MESSAGE="or connect through SSH "
+  export SSH_MESSAGE="or connect through SSH "
 fi
 
 # Catch Docker stop
