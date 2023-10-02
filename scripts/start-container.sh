@@ -56,6 +56,10 @@ if [ "$DL_ON_START" == "true" ]; then
           echo "Folder removed, continuing..."
         fi
       fi
+    else
+      if [ -d ${DATA_DIR}/linux-${UNAME} ]; then
+        echo "Overwriting already existing directory: ${DATA_DIR}/linux-${UNAME}"
+      fi
     fi
     echo "Extracting, please wait..."
     mkdir -p ${DATA_DIR}/linux-${UNAME}
