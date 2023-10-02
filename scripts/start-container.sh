@@ -85,7 +85,7 @@ if [ "$DL_ON_START" == "true" ]; then
 fi
 
 # Display container ready message
-echo "Container ready, please open the console ${SSH_MESSAGE}to the container and go to ${DATA_DIR}"
+echo "Container ready! Please open the console ${SSH_MESSAGE}to interact with the container and go to ${DATA_DIR}"
 
 # Sleep to keep container alive
 sleep infinity
