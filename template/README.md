@@ -1,1 +1,1 @@
-a
+Place the file `my-Unraid-Kernel.xml` in your `/boot/config/plugins/dockerMan/templates-user/` directory and install it through the 'Add Container' button on your Docker page in Unraid. On the 'Add-Container' page open the drop-down and search for: `Unraid-Kernel`.
