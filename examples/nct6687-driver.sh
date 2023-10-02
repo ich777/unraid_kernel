@@ -78,4 +78,7 @@ md5sum ${DATA_DIR}/${UNAME}/$PLUGIN_NAME-$PLUGIN_VERSION-$UNAME-1.txz | awk '{pr
 # Cleanup
 rm -rf $BASE_DIR ${DATA_DIR}/NCT6687
 
+# Go to output directory
+cd ${DATA_DIR}/${UNAME}
+
 # For a upload example please look at the upload.sh
