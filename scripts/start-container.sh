@@ -61,7 +61,6 @@ if [ "$DL_ON_START" == "true" ]; then
         echo "Overwriting already existing directory: ${DATA_DIR}/linux-${UNAME}"
       fi
     fi
-    echo "Extracting, please wait..."
     mkdir -p ${DATA_DIR}/linux-${UNAME}
     tar -xf ${DATA_DIR}/linux-$UNAME.tar.xz -C ${DATA_DIR}/linux-$UNAME
     # Check if gcc version matches, if not display warning
