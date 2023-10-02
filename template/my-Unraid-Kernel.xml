@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Unraid-Kernel</Name>
+  <Repository>ghcr.io/ich777/unraid_kernel:gcc_11.2.0</Repository>
+  <Registry>https://github.com/ich777/unraid_kernel</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/ich777/unraid_kernel/issues/</Support>
+  <Project>https://unraid.net/</Project>
+  <Overview>This container enables you to compile drivers for your very own Unraid instance, create driver packages and even to upload them to GitHub.&#xD;
+&#xD;
+By default it ships with a SSH server that you can connect to on port 8022 with the user 'root' and password 'secret' (password is of course changable).&#xD;
+&#xD;
+In the default configuration the container will try to download and extract a pre-compiled Kernel version for your running Unraid version (starting with Unraid 6.12.0). After that the container is prepared so that you can connect through the console or SSH and start compiling your driver(s).&#xD;
+Please watch your container log, it will tell you when everything is done or if a error occoured.&#xD;
+&#xD;
+**ATTENTION:** Please choose the correct container image that matches the description on GitHub for your pre-compiled Unraid version (eg: all pre-compiled Unraid Kernels are based on gcc_11.2.0).&#xD;
+&#xD;
+For more information please contact me on the forums 'ich777' or open up a GitHub issue over here: https://github.com/ich777/unraid_kernel/issues.</Overview>
+  <Category>Tools:System Drivers:</Category>
+  <WebUI/>
+  <TemplateURL>false</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/ich777/docker-templates/master/ich777/images/unraid.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText>If you like my work please </DonateText>
+  <DonateLink>https://www.paypal.me/chips777</DonateLink>
+  <Requires>Basic knowledge how to compile drivers and handling the command line</Requires>
+  <Config Name="Main data path" Target="/usr/src" Default="" Mode="rw" Description="It is recommended that you use the real file path like: /mnt/cache/appdata/... or /mnt/disk1/appdata/... instead of the FUSE file path: /mnt/user/appdata/..." Type="Path" Display="always" Required="true" Mask="false">/mnt/cache/appdata/unraid-kernel</Config>
+  <Config Name="SSH Port" Target="8022" Default="" Mode="tcp" Description="Only necessary if you enable the built in SSH server." Type="Port" Display="always" Required="false" Mask="false">8020</Config>
+  <Config Name="Enable SSH Server" Target="ENABLE_SSH" Default="true|false" Mode="" Description="Enables/disables the built in SSH server." Type="Variable" Display="always" Required="true" Mask="false">true</Config>
+  <Config Name="root Password" Target="ROOT_PWD" Default="" Mode="" Description="Set your root password for the container to log in through SSH (when SSH is not used it can be left untouched - default 'secret')." Type="Variable" Display="always" Required="true" Mask="true">secret</Config>
+  <Config Name="Download on Start" Target="DL_ON_START" Default="true|false" Mode="" Description="Enables/disables the automatic download from the pre-compiled Kernel archive for the currently running Unraid version." Type="Variable" Display="always" Required="true" Mask="false">true</Config>
+  <Config Name="Extract on Start" Target="EXTRACT" Default="true|false" Mode="" Description="Enables/disables automatic extract from the pre-compiled Kernel version on start." Type="Variable" Display="always" Required="true" Mask="false">true</Config>
+  <Config Name="Overwrite directory" Target="OVERWRITE" Default="false|true" Mode="" Description="Enable/disable overwrite from the pre-compiled Kernel directory in the main data path (use with caution - only takes effect when EXTRACT is enabled)." Type="Variable" Display="always" Required="true" Mask="false">false</Config>
+  <Config Name="CPU Threads" Target="CPU_THREADS" Default="" Mode="" Description="This specifies how much CPU threads will be used for the preparation of the container (this value must be either 'all' or a integer)" Type="Variable" Display="always" Required="true" Mask="false">all</Config>
+  <Config Name="Cleanup Main data path" Target="CLEANUP" Default="false|true" Mode="" Description="If enabled this will clean up the main data path and remove all folders in it except for hidden folders and files. The container will be halted after the cleanup has finished, this option must be disabled afterwards." Type="Variable" Display="always" Required="true" Mask="false">false</Config>
+</Container>
