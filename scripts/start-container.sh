@@ -45,16 +45,15 @@ if [ "$DL_ON_START" == "true" ]; then
     # Check if overwrite pre compiled Kernel is enabled
     if [ "${OVERWRITE}" != "true" ]; then
       if [ -d ${DATA_DIR}/linux-${UNAME} ]; then
-        echo "Directory linux-${UNAME} found, halting container until folder is removed!"
+        echo "Directory ${DATA_DIR}/linux-${UNAME} found, halting container until folder is removed!"
         while [ -d ${DATA_DIR}/linux-${UNAME} ]; do
-          echo "Folder still exists, please remove ${DATA_DIR}/linux-${UNAME}"
           sleep 5
         done
         if [ ! -f ${DATA_DIR}/linux-${UNAME}.tar.xz ]; then
           echo "Something went wrong, file ${DATA_DIR}/linux-${UNAME}.tar.xz isn't in place any more. Please restart the container."
           sleep infinity
         else
-          echo "Folder removed, continuing..."
+          echo "Folder ${DATA_DIR}/linux-${UNAME} removed, continuing..."
         fi
       fi
     else
