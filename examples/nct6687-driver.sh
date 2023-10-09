@@ -1,6 +1,7 @@
 #!/bin/bash
 # Get current uname
 UNAME=$(uname -r)
+DATA_DIR=/usr/src
 
 # Create directory for packages if not exists
 if [ ! -d ${DATA_DIR}/${UNAME} ]; then
