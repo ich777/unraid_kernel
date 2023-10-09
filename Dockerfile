@@ -31,6 +31,9 @@ RUN mkdir -p /run/sshd && \
         sed -i "/#HostKey \/etc\/ssh\/ssh_host_ed25519_key/c\HostKey \/usr\/src\/.ssh\/ssh_host_ed25519_key" /etc/ssh/sshd_config && \
         sed -i "/#PermitRootLogin prohibit-password/c\PermitRootLogin yes" /etc/ssh/sshd_config
 
+RUN sed -i '/^password[[:space:]]*requisite/s/^/#/' /etc/pam.d/system-auth && \
+	sed -i '/^password[[:space:]]*sufficient/s/ use_authtok//' /etc/pam.d/system-auth
+
 RUN cd /tmp && \
 	wget -O /tmp/github-release.bz2 https://github.com/github-release/github-release/releases/download/v0.10.0/linux-amd64-github-release.bz2 && \
  	bzip2 -d github-release.bz2 && \

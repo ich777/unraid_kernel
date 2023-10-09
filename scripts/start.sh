@@ -1,6 +1,6 @@
 #!/bin/bash
 # Change root pwd to allow login through SSH
-echo "root:${ROOT_PWD}" | chpasswd -e
+echo "root:${ROOT_PWD}" | chpasswd
 export ROOT_PWD="secret"
 
 # Enable SSH and generate keys if necessary
