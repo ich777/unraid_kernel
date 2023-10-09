@@ -41,6 +41,8 @@ RUN cd /tmp && \
    	chmod 755 /usr/bin/github-release && \
     	rm -rf /tmp/*
 
+RUN echo -e "Welcome to the unRAID Kernel container!\n\nPlease visit https://github.com/ich777/unraid_kernel/tree/master/examples for\nexample compilation scripts." > /etc/motd
+
 ENV DATA_DIR="/usr/src"
 ENV ENABLE_SSH="true"
 ENV ROOT_PWD="secret"
