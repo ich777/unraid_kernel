@@ -9,7 +9,9 @@ if [ ! -d ${DATA_DIR}/${UNAME} ]; then
 fi
 
 # Get all CPU threads if CPU_THREADS all is set
-if [ "${CPU_THREADS}" == "all" ]; then
+if [ -z "${CPU_THREADS}" ]; then
+  CPU_THREADS=$(nproc --all)
+elif [ "${CPU_THREADS}" == "all" ]; then
   CPU_THREADS=$(nproc --all)
 fi
 
