@@ -86,6 +86,10 @@ if [ "$DL_ON_START" == "true" ]; then
   fi
 fi
 
+if [ ! -d ${DATA_DIR}/${UNAME} ]; then
+  mkdir -p ${DATA_DIR}/${UNAME}
+fi
+
 # Display container ready message
 echo "Container ready! Please open the console ${SSH_MESSAGE}to interact with the container and go to ${DATA_DIR}"
 
