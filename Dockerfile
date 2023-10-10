@@ -58,7 +58,7 @@ ENV DATA_PERM=770
 
 WORKDIR /usr/src
 
-ADD /scripts/ /opt/scripts/
+ADD /docker-scripts/ /opt/scripts/
 RUN chmod -R 770 /opt/scripts/
 
 #Server Start
