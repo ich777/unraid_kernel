@@ -14,7 +14,7 @@ RUN cd /tmp && \
         wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}/slackware64/n/ca-certificates-${CA_CERT_V}-noarch-1.txz && \
         wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}/slackware64/n/openssl-${OPENSSL_V}-x86_64-1.txz && \
         wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}/slackware64/d/perl-${PERL_V}-x86_64-1.txz && \
-        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}/slackware64/a/coreutils-${COREUTILS_V}-x86_64-3.txz && \
+        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}/slackware64/a/coreutils-${COREUTILS_V}-x86_64-1.txz && \
         wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}/slackware64/a/dcron-${DCRON_V}-x86_64-13.txz && \
         installpkg * && \
         /usr/sbin/update-ca-certificates --fresh
