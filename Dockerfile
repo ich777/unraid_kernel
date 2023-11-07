@@ -8,13 +8,14 @@ ARG OPENSSL_V=3.1.4
 ARG PERL_V=5.38.0
 ARG COREUTILS_V=9.4
 ARG DCRON_V=4.5
+ARG SLACK_REL=current
 
 RUN cd /tmp && \
-        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-15.0/slackware64/n/ca-certificates-${CA_CERT_V}-noarch-1.txz && \
-        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-15.0/slackware64/n/openssl-${OPENSSL_V}-x86_64-1.txz && \
-        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-15.0/slackware64/d/perl-${PERL_V}-x86_64-1.txz && \
-        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-15.0/slackware64/a/coreutils-${COREUTILS_V}-x86_64-3.txz && \
-        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-15.0/slackware64/a/dcron-${DCRON_V}-x86_64-11.txz && \
+        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}/slackware64/n/ca-certificates-${CA_CERT_V}-noarch-1.txz && \
+        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}/slackware64/n/openssl-${OPENSSL_V}-x86_64-1.txz && \
+        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}/slackware64/d/perl-${PERL_V}-x86_64-1.txz && \
+        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}/slackware64/a/coreutils-${COREUTILS_V}-x86_64-3.txz && \
+        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}/slackware64/a/dcron-${DCRON_V}-x86_64-11.txz && \
         installpkg * && \
         /usr/sbin/update-ca-certificates --fresh
 
