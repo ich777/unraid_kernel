@@ -57,6 +57,7 @@ packages=(
   openssh
   bzip2
   xz
+  lzlib
 )
 
 # download FILELIST.TXT to get list of packages
@@ -85,8 +86,8 @@ installpkg *
 cd /tmp
 
 # install jq
-jq_v=1.7
-wget -O /tmp/jq-${jq_v}-x86_64-1alien.txz  	https://slackware.uk/people/alien/sbrepos/current/x86_64/jq/jq-${jq_v}-x86_64-1alien.txz
+jq_v=1.6
+wget -O /tmp/jq-${jq_v}-x86_64-1alien.txz https://slackware.uk/people/alien/sbrepos/current/x86_64/jq/jq-${jq_v}-x86_64-1alien.txz
 installpkg /tmp/jq-${jq_v}-x86_64-1alien.txz
 
 # install squashfs-tools
