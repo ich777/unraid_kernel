@@ -70,7 +70,7 @@ mkdir -p /tmp/packages
 for package_name in "${packages[@]}"
 do
   # find the package in FILELIST.TXT
-  package_file=$(grep -E "/${package_name//\+/\\\+}-[0-9]+" /tmp/FILELIST.TXT | awk '{print $8}' | grep -E "txz|tgz" | grep -v ".asc" | grep -v "/source/" | grep -v "/patches/" | sed 's/^\.\///')
+  package_file=$(grep -E "/${package_name//\+/\\\+}-[0-9]+" /tmp/FILELIST.TXT | awk '{print $8}' | grep -E "txz|tgz" | grep -v ".asc" | grep -Ev "/source/|/testing/" | grep -v "/patches/" | sed 's/^\.\///')
   
   # download the package
   if ! wget -P /tmp/packages/ "${server_url}${package_file}" ; then
