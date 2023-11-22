@@ -6,7 +6,7 @@
   <Network>bridge</Network>
   <MyIP/>
   <Shell>bash</Shell>
-  <Privileged>false</Privileged>
+  <Privileged>true</Privileged>
   <Support>https://github.com/ich777/unraid_kernel/issues/</Support>
   <Project>https://unraid.net/</Project>
   <Overview>This container enables you to compile drivers for your very own Unraid instance, create driver packages and even to upload them to GitHub.&#xD;
