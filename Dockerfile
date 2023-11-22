@@ -3,7 +3,7 @@ FROM vbatts/slackware:current
 LABEL maintainer="admin@minenet.at"
 LABEL org.opencontainers.image.source="https://github.com/ich777/unraid_kernel"
 
-ARG CA_CERT_V=20230721
+ARG CA_CERT_V=20231117
 ARG OPENSSL_V=3.1.4
 ARG PERL_V=5.38.0
 ARG COREUTILS_V=9.4
