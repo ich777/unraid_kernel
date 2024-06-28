@@ -1,23 +1,17 @@
 FROM vbatts/slackware:current
 
 LABEL maintainer="admin@minenet.at"
-LABEL org.opencontainers.image.source="https://github.com/ich777/unraid_kernel"
 
-ARG CA_CERT_V=20231117
-ARG OPENSSL_V=3.1.4
-ARG PERL_V=5.38.0
-ARG COREUTILS_V=9.4
-ARG DCRON_V=4.5
-ARG GLIBC=2.38
 ARG SLACK_REL=current
 
-RUN cd /tmp && \
-        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}/slackware64/n/ca-certificates-${CA_CERT_V}-noarch-1.txz && \
-        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}/slackware64/n/openssl-${OPENSSL_V}-x86_64-1.txz && \
-        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}/slackware64/d/perl-${PERL_V}-x86_64-1.txz && \
-        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}/slackware64/a/coreutils-${COREUTILS_V}-x86_64-1.txz && \
-        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}/slackware64/a/dcron-${DCRON_V}-x86_64-13.txz && \
-	wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}/slackware64/a/aaa_glibc-solibs-${GLIBC}-x86_64-3.txz && \
+RUN	FILE_LIST=$(wget --no-check-certificate -qO- http://ftp.linux.cz/pub/linux/slackware/slackware64-${SLACK_REL}/FILELIST.TXT) && \
+	cd /tmp && \
+        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}$(echo "$FILE_LIST" | awk '{print $8}' | grep 'ca-certificates-[0-9]\+' | grep '\.txz$' | sed 's/^\.*//') && \
+        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}$(echo "$FILE_LIST" | awk '{print $8}' | grep 'openssl-[0-9]\+' | grep '\.txz$' | sed 's/^\.*//') && \
+        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}$(echo "$FILE_LIST" | awk '{print $8}' | grep 'perl-[0-9]\+' | grep '\.txz$' | sed 's/^\.*//') && \
+        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}$(echo "$FILE_LIST" | awk '{print $8}' | grep 'coreutils-[0-9]\+' | grep '\.txz$' | sed 's/^\.*//') && \
+        wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}$(echo "$FILE_LIST" | awk '{print $8}' | grep 'dcron-[0-9]\+' | grep '\.txz$' | sed 's/^\.*//') && \
+	wget --no-check-certificate http://mirrors.slackware.com/slackware/slackware64-${SLACK_REL}$(echo "$FILE_LIST" | awk '{print $8}' | grep 'aaa_glibc-solibs-[0-9]\+' | grep '\.txz$' | sed 's/^\.*//') && \
         installpkg * && \
         /usr/sbin/update-ca-certificates --fresh
 
