@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>Unraid-Kernel</Name>
-  <Repository>ghcr.io/ich777/unraid_kernel:gcc_11.2.0</Repository>
+  <Repository>ghcr.io/ich777/unraid_kernel:gcc_14.1.0</Repository>
   <Registry>https://github.com/ich777/unraid_kernel</Registry>
   <Network>bridge</Network>
   <MyIP/>
