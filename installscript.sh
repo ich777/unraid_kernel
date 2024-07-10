@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Slackware server URL
-server_url="http://mirrors.slackware.com/slackware/slackware64-15.0/"
+server_url="http://mirrors.slackware.com/slackware/slackware64-current/"
 
 # package names without version number
 packages=(
@@ -56,6 +56,8 @@ packages=(
   xxHash
   openssh
   bzip2
+  xz
+  lzlib
 )
 
 # download FILELIST.TXT to get list of packages
@@ -68,7 +70,7 @@ mkdir -p /tmp/packages
 for package_name in "${packages[@]}"
 do
   # find the package in FILELIST.TXT
-  package_file=$(grep -E "/${package_name//\+/\\\+}-[0-9]+" /tmp/FILELIST.TXT | awk '{print $8}' | grep -E "txz|tgz" | grep -v ".asc" | grep -v "/source/" | grep -v "/patches/" | sed 's/^\.\///')
+  package_file=$(grep -E "/${package_name//\+/\\\+}-[0-9]+" /tmp/FILELIST.TXT | awk '{print $8}' | grep -E "txz|tgz" | grep -v ".asc" | grep -Ev "/source/|/testing/" | grep -v "/patches/" | sed 's/^\.\///')
   
   # download the package
   if ! wget -P /tmp/packages/ "${server_url}${package_file}" ; then
@@ -85,14 +87,8 @@ cd /tmp
 
 # install jq
 jq_v=1.6
-wget -O /tmp/jq-${jq_v}-x86_64-1alien.txz https://slackware.uk/people/alien/sbrepos/15.0/x86_64/jq/jq-${jq_v}-x86_64-1alien.txz
+wget -O /tmp/jq-${jq_v}-x86_64-1alien.txz https://slackware.uk/people/alien/sbrepos/current/x86_64/jq/jq-${jq_v}-x86_64-1alien.txz
 installpkg /tmp/jq-${jq_v}-x86_64-1alien.txz
-
-# install xz
-xz_v=5.2.5
-wget -O /tmp/xz.tar https://github.com/ich777/xz/releases/download/${xz_v}/xz-v${xz_v}.tar.gz
-tar -C / -xvf /tmp/xz.tar && \
-rm /tmp/xz.tar
 
 # install squashfs-tools
 wget -O /tmp/squashfs-tools-4.5-x86_64-2.txz https://slackware.uk/slackware/slackware64-15.0/slackware64/ap/squashfs-tools-4.5-x86_64-2.txz && \
