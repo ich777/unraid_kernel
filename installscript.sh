@@ -58,6 +58,7 @@ packages=(
   bzip2
   xz
   lzlib
+  nghttp3
 )
 
 # download FILELIST.TXT to get list of packages
